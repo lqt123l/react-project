@@ -1,7 +1,7 @@
 import React from 'react';
-const SearchBox = ({name,onHandleChange}) => {
+const SearchBox = ({name,onHandleChange,hintList}) => {
     return (
-        <input type="text" value={name} onChange={onHandleChange}>
+        <input type="text" value={name} onChange={onHandleChange} list={hintList}>
         </input>
     );
 }

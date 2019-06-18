@@ -10,3 +10,4 @@ const searchProducts = (state = {}, action) => {
 export default searchProducts;
 
 export const getSearchContents = (state) => state.searchProducts;
+export const getIsInputing = (state) => state.searchProducts[0] ? true : false;

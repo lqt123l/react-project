@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { getAllProductsList } from './../reducers/index';
+import {getErrorMessage} from './../reducers/errorMessage';
 import SearchBlock from './searchBlock';
 
 class SearchResult extends Component {
     render() {
-        const { productsList } = this.props;
-        return (
-            productsList.map(singleProduct =>
-                <SearchBlock key={singleProduct.id} product={singleProduct}></SearchBlock>)
+        const { productsList,errorMessage } = this.props;
+        return errorMessage !== null ? errorMessage: (
+            <div>
+             {productsList.map(singleProduct =>
+                <SearchBlock key={singleProduct.id} product={singleProduct}></SearchBlock>)}
+            </div>
         );
     }
 }
@@ -17,7 +20,8 @@ class SearchResult extends Component {
 const mapStatesToProps = (state) => {
     return {
         state: state,
-        productsList: getAllProductsList(state)
+        productsList: getAllProductsList(state),
+        errorMessage:getErrorMessage(state)
     }
 }
 

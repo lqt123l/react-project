@@ -141,7 +141,7 @@ const fakeDatabase = {
             id: uuid.v4(),
             productName: 'Bio Island DHA Kids 60 Capsules',
             productBrand: 'Bio Island',
-            productStore: 'PriceLine',
+            productStore: 'TerryWhite',
             productType: 'Nutrition',
             regularPrice: 25,
             discountPrice: 15,
