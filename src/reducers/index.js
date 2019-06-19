@@ -1,18 +1,16 @@
 import {combineReducers} from 'redux';
-import receiveProducts from './receiveProducts';
 import searchProducts from './searchProducts';
-import receiveProductsIdList from './receiveProductsIdList';
 import searchMemory from './searchMemory';
 import errorMessage from './errorMessage';
-import {getAllIds} from './receiveProductsIdList'
-import {getProducts} from './receiveProducts';
+// import products from './products';
+import {products, getAllIds, getProducts} from './products';
 
 
 
 
-const products = combineReducers({receiveProducts, searchProducts, receiveProductsIdList,searchMemory,errorMessage});
+const store = combineReducers({products, searchProducts, searchMemory,errorMessage});
 
-export default products;
+export default store;
 
 export const getAllProductsList = (state) => {
     const ids = getAllIds(state);
