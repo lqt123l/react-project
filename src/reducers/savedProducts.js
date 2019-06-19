@@ -22,3 +22,6 @@ const allIds = (state=[],action) => {
 }
 
 export const savedProducts = combineReducers({byId,allIds})
+
+export const getSavedProducts = (state,id) => state.savedProducts.byId[id];
+export const getAllSavedIds = (state) => state.savedProducts.allIds;
