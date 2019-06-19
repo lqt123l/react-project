@@ -5,6 +5,7 @@ const SavedItemBlock = ({ product }) => {
             <span>{product.productName}</span>&nbsp;&nbsp;
             <span>{product.productStore}</span>&nbsp;&nbsp;
             <span>$AU{product.discountPrice}</span>&nbsp;&nbsp;&nbsp;
+            <span>{product.weight} kg</span>&nbsp;&nbsp;&nbsp;
             <span>{product.productLocation}</span>
         </div>
     );
