@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { getAllSavedProducts } from './../reducers/index';
+import SavedItemBlock from './savedItemBlock';
 
 class SavedProducts extends Component {
     render() { 
@@ -9,7 +10,7 @@ class SavedProducts extends Component {
         return ( 
             <div>
                 <h3>Saved products</h3>
-                {savedProductsList.map((savedProduct) => <span>{savedProduct.productName}</span>)}
+                {savedProductsList.map((savedProduct,index) => <SavedItemBlock key={index} product={savedProduct}></SavedItemBlock>)}
             </div>
          );
     }
