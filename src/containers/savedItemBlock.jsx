@@ -6,7 +6,6 @@ const SavedItemBlock = ({ product,deleteSave }) => {
             <td>{product.productStore}</td>
             <td>$AU{product.discountPrice}</td>
             <td>{product.weight} g</td>
-            <td>{product.productLocation}</td>
             <button className="btn btn-outline-warning" onClick={() => deleteSave(product.id)}>Delete/Finish</button>
         </tr>
     );
