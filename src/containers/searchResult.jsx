@@ -10,7 +10,7 @@ class SearchResult extends Component {
     render() {
         const { productsList, errorMessage, saveProduct } = this.props;
         return errorMessage !== null ? errorMessage : (
-            <table class="table">
+            <table className="table">
                 {productsList.length !== 0 && 
                 <thead>
                     <tr>

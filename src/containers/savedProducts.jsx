@@ -8,17 +8,27 @@ import * as actions from './../actions/index';
 class SavedProducts extends Component {
     render() {
         const { savedProductsList, deleteSave } = this.props;
-        return (
-            <div>
-                <h3>Saved products</h3>
-                {savedProductsList.map((savedProduct, index) =>
-                    <div key={index}>
-                        <SavedItemBlock product={savedProduct}></SavedItemBlock>
-                        <button onClick={() => deleteSave(savedProduct.id)}>Delete/Finish</button>
-                    </div>
-                )}
-            </div>
-        );
+        console.log(savedProductsList.length);
+        if (savedProductsList.length !== 0) {
+            return (
+                <div>
+                    <h4>Saved products</h4>
+                    <table className="table">
+                        <tbody>
+                            {savedProductsList.map((savedProduct, index) =>
+                                <SavedItemBlock key={index} product={savedProduct} deleteSave={deleteSave}></SavedItemBlock>
+                            )}
+                        </tbody>
+                    </table>
+                </div>
+            );
+        } else {
+            return (
+                <div>
+
+                </div>
+            )
+        }
     }
 }
 
