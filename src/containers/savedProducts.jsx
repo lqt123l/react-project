@@ -14,6 +14,16 @@ class SavedProducts extends Component {
                 <div>
                     <h4>Saved products</h4>
                     <table className="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Product Name</th>
+                                <th scope="col">Store</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Weight</th>
+                                <th scope="col">Location</th>
+                                <th scope="col">Delete</th>
+                            </tr>
+                        </thead>
                         <tbody>
                             {savedProductsList.map((savedProduct, index) =>
                                 <SavedItemBlock key={index} product={savedProduct} deleteSave={deleteSave}></SavedItemBlock>

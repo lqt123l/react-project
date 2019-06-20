@@ -10,11 +10,11 @@ const App = () => {
     <div className='container'>
       <h2>App</h2>
       <div className="row">      
-        <div className='col-md-12 col-lg-6'>
+        <div className='col-md-12 col-lg-5'>
           <Search></Search>
           <SearchResult></SearchResult>
         </div>
-        <div className='col-md-12 col-lg-6'>
+        <div className='col-md-12 col-lg-7'>
           <SavedProducts></SavedProducts>
         </div>
       </div>
