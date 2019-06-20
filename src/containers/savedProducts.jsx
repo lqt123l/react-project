@@ -8,7 +8,6 @@ import * as actions from './../actions/index';
 class SavedProducts extends Component {
     render() {
         const { savedProductsList, deleteSave } = this.props;
-        console.log(savedProductsList.length);
         if (savedProductsList.length !== 0) {
             return (
                 <div>
@@ -20,7 +19,6 @@ class SavedProducts extends Component {
                                 <th scope="col">Store</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">Weight</th>
-                                <th scope="col">Location</th>
                                 <th scope="col">Delete</th>
                             </tr>
                         </thead>
