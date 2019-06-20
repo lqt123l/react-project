@@ -2,7 +2,7 @@ import React from 'react';
 const ConfirmButton = ({onSearchClick}) => {
     return (  
         <div>
-            <button onClick = {onSearchClick} >Search</button>
+            <button  className="btn btn-outline-secondary" type="button" onClick = {onSearchClick} >Search</button>
         </div>
     );
 }
