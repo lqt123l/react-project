@@ -41,11 +41,15 @@ export const fetchProducts = (filter) => (dispatch, getState) => {
 
 export const searchInput = (content) => ({
     type: 'SEARCH_INPUT',
-    content: content
+    content
 })
 
 export const saveProduct = (product) => ({
         type: 'SAVE_PRODUCT',
-        product: product
+        product
 })
 
+export const deleteSave = (id) => ({
+    type:'DELETE_SAVE',
+    id
+})
