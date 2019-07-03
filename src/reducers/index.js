@@ -2,14 +2,21 @@ import {combineReducers} from 'redux';
 import searchProducts from './searchProducts';
 import searchMemory from './searchMemory';
 import errorMessage from './errorMessage';
+import stores from './stores';
 import {products, getAllIds, getProducts} from './products';
 import { savedProducts,getAllSavedIds,getSavedProducts } from './savedProducts';
+import {reducer as formReducer} from 'redux-form';
 
 
-
-
-
-const store = combineReducers({products, savedProducts,searchProducts, searchMemory,errorMessage});
+const store = combineReducers({
+    products, 
+    stores,
+    savedProducts,
+    searchProducts, 
+    searchMemory,
+    errorMessage,
+    form:formReducer
+});
 
 export default store;
 
