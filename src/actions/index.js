@@ -22,7 +22,7 @@ export const fetchProducts = (filter) => (dispatch, getState) => {
 
     const searchProducts = getState().searchProducts.split(" ").join("-").toLowerCase();;
 
-    return Axios.get(`${heroKuServer}/product/${searchProducts}`)
+    return Axios.get(`${localHost5001}/product/${searchProducts}`)
         .then(
             response => {
                 dispatch({
@@ -57,7 +57,7 @@ export const saveProduct = (product) => ({
 
 export const deleteSave = (id) => ({
     type: 'DELETE_SAVE',
-    id
+    _id:id
 })
 
 export const testSend = (value) => {
@@ -66,7 +66,7 @@ export const testSend = (value) => {
 
 export const fetchStores = () => (dispatch, getState) => {
     // return Axios.get('https://thawing-inlet-79899.herokuapp.com/store')
-    return Axios.get(`${heroKuServer}/store`)
+    return Axios.get(`${localHost5001}/store`)
         .then(
             response => {
                 console.log(response.data);
@@ -108,7 +108,7 @@ export const fetchStores = () => (dispatch, getState) => {
 export const sendProduct = (value) => {
     console.log(value);
     // Axios.post('https://thawing-inlet-79899.herokuapp.com/product', {
-    Axios.post(`${heroKuServer}/product`, {
+    Axios.post(`${localHost5001}/product`, {
         productName: value.productName,
         productBrand: value.productBrand,
         storeId: value.productStore,

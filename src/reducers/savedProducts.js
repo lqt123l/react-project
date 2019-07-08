@@ -5,10 +5,10 @@ const byId = (state = {}, action) => {
     switch (action.type) {
         case 'SAVE_PRODUCT':
             const nextState = { ...state };
-            nextState[action.product.id] = action.product;     
+            nextState[action.product._id] = action.product;     
             return nextState;       
         case 'DELETE_SAVE':
-            return _.omit(state,action.id);
+            return _.omit(state,action._id);
 
         default:
             return state;
@@ -18,11 +18,11 @@ const byId = (state = {}, action) => {
 const allIds = (state=[],action) => {
     switch (action.type){
         case 'SAVE_PRODUCT':
-            return [...state,action.product.id]
+            return [...state,action.product._id]
         case 'DELETE_SAVE':
             const newArray = [];
             state.forEach(function(single){
-                if (single !== action.id){
+                if (single !== action._id){
                     newArray.push(single)
                 }
             })
