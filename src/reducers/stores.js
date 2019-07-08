@@ -1,7 +1,8 @@
 const stores = (state = [], action) => {
     switch (action.type) {
         case 'FETCH_STORES_SUCCESS':
-            return action.payload
+            const newState = [...action.payload]
+            return newState
         default:
             return state;
 

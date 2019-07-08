@@ -1,6 +1,12 @@
 import * as api from './../api/index';
 import Axios from 'axios';
+import {normalize} from 'normalizr';
+import * as schema from './schema';
 
+
+
+const localHost5001 = 'http://localhost:5001';
+const heroKuServer = 'https://thawing-inlet-79899.herokuapp.com';
 
 export const fetchProducts = (filter) => (dispatch, getState) => {
 
@@ -14,19 +20,15 @@ export const fetchProducts = (filter) => (dispatch, getState) => {
         item: getState().searchProducts
     })
 
-    Axios.get('http://localhost:5001/product')
-        .then((result) => {
-            console.log(result);
-        })
+    const searchProducts = getState().searchProducts.split(" ").join("-").toLowerCase();;
 
-
-    return api.fetchProducts(getState().searchProducts)
+    return Axios.get(`${localHost5001}/product/${searchProducts}`)
         .then(
             response => {
                 dispatch({
                     type: 'RECEIVE_PRODUCTS',
                     filter,
-                    response
+                    payload:response.data
                 })
             },
             error => {
@@ -63,7 +65,8 @@ export const testSend = (value) => {
 }
 
 export const fetchStores = () => (dispatch, getState) => {
-    return Axios.get('http://localhost:5001/store')
+    // return Axios.get('https://thawing-inlet-79899.herokuapp.com/store')
+    return Axios.get(`${localHost5001}/store`)
         .then(
             response => {
                 console.log(response.data);
@@ -104,7 +107,8 @@ export const fetchStores = () => (dispatch, getState) => {
 
 export const sendProduct = (value) => {
     console.log(value);
-    Axios.post('http://localhost:5001/product', {
+    // Axios.post('https://thawing-inlet-79899.herokuapp.com/product', {
+    Axios.post(`${localHost5001}/product`, {
         productName: value.productName,
         productBrand: value.productBrand,
         storeId: value.productStore,

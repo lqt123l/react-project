@@ -4,8 +4,9 @@ const byId = (state = {}, action) => {
     switch (action.type) {
         case 'RECEIVE_PRODUCTS':
             const nextState = { ...state };
-            action.response.forEach(product => {
-                nextState[product.id] = product;
+            console.log('PayLoad:',action.payload);
+            action.payload.map(product => {
+                nextState[product._id] = product;
             });
             return nextState;
 
@@ -17,7 +18,7 @@ const byId = (state = {}, action) => {
 const allIds = (state=[],action) => {
     switch (action.type){
         case 'RECEIVE_PRODUCTS':
-            return action.response.map(product=>product.id)
+            return action.payload.map(product=>product._id)
         default:
             return state;
     }

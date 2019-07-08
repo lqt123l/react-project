@@ -17,8 +17,11 @@ class ProductManage extends Component {
         console.log(stores);
 
         return (
-            <div className='row'>
-                <AddProductForm></AddProductForm>
+            <div>
+                <h2>Add Product</h2>
+                <div className='row'>
+                    <AddProductForm></AddProductForm>
+                </div>
             </div>
         );
     }

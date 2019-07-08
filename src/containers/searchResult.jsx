@@ -9,6 +9,7 @@ import SearchBlock from './searchBlock';
 class SearchResult extends Component {
     render() {
         const { productsList, errorMessage, saveProduct } = this.props;
+        console.log('List:',productsList);
         return errorMessage !== null ? errorMessage : (
             <table className="table">
                 {productsList.length !== 0 && 
@@ -22,7 +23,7 @@ class SearchResult extends Component {
                 </thead>}
                 <tbody>
                     {productsList.map(singleProduct =>
-                        <SearchBlock key={singleProduct.id} product={singleProduct} saveProduct={saveProduct}></SearchBlock>
+                        <SearchBlock key={singleProduct._id} product={singleProduct} saveProduct={saveProduct}></SearchBlock>
                     )
                     }
                 </tbody>

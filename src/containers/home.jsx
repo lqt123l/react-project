@@ -1,7 +1,6 @@
 import SearchResult from './searchResult';
 import SavedProducts from './savedProducts';
 import Search from './search';
-import ProductManage from './productManage';
 
 import React from 'react';
 const Home = () => {

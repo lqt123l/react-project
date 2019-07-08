@@ -2,9 +2,9 @@ import React from 'react';
 const SearchBlock = ({ product,saveProduct }) => {
     return (
         <tr>
-            <td>{product.productStore}</td>
+            <td>{product.productStore.name}</td>
             <td>$AU{product.discountPrice}</td>
-            <td>{product.productLocation}</td>
+            <td>{product.productStore.location}</td>
             <td><button className="btn btn-primary" onClick={() => saveProduct(product)}>save</button></td>
         </tr>
     );
