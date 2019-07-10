@@ -7,6 +7,7 @@ import * as schema from './schema';
 
 const localHost5001 = 'http://localhost:5001';
 const heroKuServer = 'https://thawing-inlet-79899.herokuapp.com';
+const currentServer = heroKuServer;
 
 export const fetchProducts = (filter) => (dispatch, getState) => {
 
@@ -22,7 +23,7 @@ export const fetchProducts = (filter) => (dispatch, getState) => {
 
     const searchProducts = getState().searchProducts.split(" ").join("-").toLowerCase();;
 
-    return Axios.get(`${localHost5001}/product/${searchProducts}`)
+    return Axios.get(`${currentServer}/product/${searchProducts}`)
         .then(
             response => {
                 dispatch({
@@ -66,7 +67,7 @@ export const testSend = (value) => {
 
 export const fetchStores = () => (dispatch, getState) => {
     // return Axios.get('https://thawing-inlet-79899.herokuapp.com/store')
-    return Axios.get(`${localHost5001}/store`)
+    return Axios.get(`${currentServer}/store`)
         .then(
             response => {
                 console.log(response.data);
@@ -108,7 +109,7 @@ export const fetchStores = () => (dispatch, getState) => {
 export const sendProduct = (value) => {
     console.log(value);
     // Axios.post('https://thawing-inlet-79899.herokuapp.com/product', {
-    Axios.post(`${localHost5001}/product`, {
+    Axios.post(`${currentServer}/product`, {
         productName: value.productName,
         productBrand: value.productBrand,
         storeId: value.productStore,
