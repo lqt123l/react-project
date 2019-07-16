@@ -1,5 +1,5 @@
 import React from 'react';
-const SavedItemBlock = ({ product,deleteSave }) => {
+const SavedProductBlock = ({ product,deleteSave }) => {
     return (
         <tr>
             <td>{product.productName}</td>
@@ -11,4 +11,4 @@ const SavedItemBlock = ({ product,deleteSave }) => {
     );
 }
 
-export default SavedItemBlock;
+export default SavedProductBlock;

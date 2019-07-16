@@ -1,5 +1,5 @@
 import React from 'react';
-const SearchBlock = ({ product,saveProduct }) => {
+const SearchResultBlock = ({ product,saveProduct }) => {
     return (
         <tr>
             <td>{product.productStore.name}</td>
@@ -10,4 +10,4 @@ const SearchBlock = ({ product,saveProduct }) => {
     );
 }
 
-export default SearchBlock;
+export default SearchResultBlock;

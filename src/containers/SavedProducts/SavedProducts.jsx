@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { getAllSavedProducts } from './../reducers/index';
-import SavedItemBlock from './savedItemBlock';
-import * as actions from './../actions/index';
+import { getAllSavedProducts } from '../../_reducers/index';
+import * as actions from '../../_actions/index';
+import SavedProductBlock from './SavedProductBlock';
 
 class SavedProducts extends Component {
     render() {
@@ -24,7 +24,7 @@ class SavedProducts extends Component {
                         </thead>
                         <tbody>
                             {savedProductsList.map((savedProduct, index) =>
-                                <SavedItemBlock key={index} product={savedProduct} deleteSave={deleteSave}></SavedItemBlock>
+                                <SavedProductBlock key={index} product={savedProduct} deleteSave={deleteSave}></SavedProductBlock>
                             )}
                         </tbody>
                     </table>
@@ -47,7 +47,7 @@ const mapStatesToProps = (state) => {
     }
 }
 
-SavedProducts = withRouter(connect(mapStatesToProps, actions)(SavedProducts));
+const connectedSavedProducts = withRouter(connect(mapStatesToProps, actions)(SavedProducts));
 
-export default SavedProducts;
+export {connectedSavedProducts as SavedProducts};
 

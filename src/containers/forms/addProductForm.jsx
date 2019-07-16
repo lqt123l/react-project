@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { reduxForm, Field } from 'redux-form';
-import {sendProduct} from '../../actions/index';
+import {sendProduct} from '../../_actions/index';
 import { renderInput, renderSelect } from './shape';
 
 

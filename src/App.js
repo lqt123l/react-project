@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import ProductManage from './containers/productManage';
-import Home from './containers/home';
-import NavBar from './containers/navBar';
+import {ProductManage} from './AdminManagePage';
+import {Home} from './HomePage';
+import {NavBar} from './containers/NavBar';
 
 
 const App = () => {

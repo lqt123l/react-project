@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { getAllProductsList } from './../reducers/index';
-import { getErrorMessage } from './../reducers/errorMessage';
-import * as actions from './../actions/index';
-import SearchBlock from './searchBlock';
+import { getAllProductsList } from '../../_reducers/index';
+import { getErrorMessage } from '../../_reducers/errorMessage';
+import * as actions from '../../_actions/index';
+import SearchResultBlock from './SearchResultBlock';
 
 class SearchResult extends Component {
     render() {
         const { productsList, errorMessage, saveProduct } = this.props;
-        console.log('List:',productsList);
         return errorMessage !== null ? errorMessage : (
             <table className="table">
                 {productsList.length !== 0 && 
@@ -23,7 +22,7 @@ class SearchResult extends Component {
                 </thead>}
                 <tbody>
                     {productsList.map(singleProduct =>
-                        <SearchBlock key={singleProduct._id} product={singleProduct} saveProduct={saveProduct}></SearchBlock>
+                        <SearchResultBlock key={singleProduct._id} product={singleProduct} saveProduct={saveProduct}></SearchResultBlock>
                     )
                     }
                 </tbody>
@@ -41,6 +40,6 @@ const mapStatesToProps = (state) => {
 }
 
 
-SearchResult = withRouter(connect(mapStatesToProps, actions)(SearchResult));
+const connectedSearchResult = withRouter(connect(mapStatesToProps, actions)(SearchResult));
 
-export default SearchResult;
+export {connectedSearchResult as SearchResult}

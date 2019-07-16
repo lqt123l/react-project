@@ -1,6 +1,6 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
-import { testSend } from '../actions/index';
+import { testSend } from '../_actions/index';
 import Isemail from 'isemail';
 import {renderInput, renderSelect} from './forms/shape';
 

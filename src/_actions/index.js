@@ -1,4 +1,3 @@
-import * as api from './../api/index';
 import Axios from 'axios';
 import {normalize} from 'normalizr';
 import * as schema from './schema';

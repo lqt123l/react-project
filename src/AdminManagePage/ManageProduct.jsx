@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { getStores } from '../reducers/stores'
-import { fetchStores } from './../actions/index';
-import AddProductForm from './forms/addProductForm';
+import { getStores } from '../_reducers/stores'
+import { fetchStores } from './../_actions/index';
+import AddProductForm from './../containers/forms/addProductForm';
 
 class ProductManage extends Component {
 
@@ -13,8 +13,6 @@ class ProductManage extends Component {
     }
 
     render() {
-        const { stores } = this.props;
-        console.log(stores);
 
         return (
             <div>
@@ -40,6 +38,6 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-ProductManage = withRouter(connect(mapStatesToProps, mapDispatchToProps)(ProductManage));
+const connectedProductManage = withRouter(connect(mapStatesToProps, mapDispatchToProps)(ProductManage));
 
-export default ProductManage;
+export {connectedProductManage as ProductManage};

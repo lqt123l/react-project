@@ -1,16 +1,14 @@
-import React, { Component } from 'react';
-import SearchBox from './searchBox';
-import ConfirmButton from './confirmButton';
-import { fetchProducts, searchInput, setInitialSearchList } from '../actions/index';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { getSearchContents, getIsInputing } from '../reducers/searchProducts';
-import { getSearchMemory } from '../reducers/searchMemory';
-import SearchHint from './searchHint';
+import React, { Component } from 'react';
+import SearchBox from './SearchBox';
+import ConfirmButton from './ConfirmButton';
+import SearchHint from './SearchHint';
+import { fetchProducts, searchInput, setInitialSearchList } from '../../_actions/index';
+import { getSearchContents, getIsInputing } from '../../_reducers/searchProducts';
+import { getSearchMemory } from '../../_reducers/searchMemory';
 
-
-
-class Search extends Component {
+class SearchProducts extends Component {
 
     // componentDidMount(){
     //     const listFromStorage = JSON.parse(window.localStorage.getItem('search_list_history'));
@@ -58,6 +56,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     }
 }
 
-Search = withRouter(connect(mapStatesToProps, mapDispatchToProps)(Search));
+const connectedSearchProducts = withRouter(connect(mapStatesToProps, mapDispatchToProps)(SearchProducts));
+export {connectedSearchProducts as SearchProducts}
 
-export default Search;
