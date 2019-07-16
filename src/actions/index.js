@@ -7,7 +7,7 @@ import * as schema from './schema';
 
 const localHost5001 = 'http://localhost:5001';
 const heroKuServer = 'https://thawing-inlet-79899.herokuapp.com';
-const currentServer = heroKuServer;
+const currentServer = localHost5001;
 
 export const fetchProducts = (filter) => (dispatch, getState) => {
 
