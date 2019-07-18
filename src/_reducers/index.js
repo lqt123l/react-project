@@ -6,6 +6,9 @@ import stores from './stores';
 import {products, getAllIds, getProducts} from './products';
 import { savedProducts,getAllSavedIds,getSavedProducts } from './savedProducts';
 import {reducer as formReducer} from 'redux-form';
+import { registration } from './register';
+import {login} from './login';
+import { loginForm } from './loginForm';
 
 
 const store = combineReducers({
@@ -15,7 +18,10 @@ const store = combineReducers({
     searchProducts, 
     searchMemory,
     errorMessage,
-    form:formReducer
+    form:formReducer,
+    registration,
+    login,
+    loginForm
 });
 
 export default store;

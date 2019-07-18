@@ -8,21 +8,28 @@ import SearchResultBlock from './SearchResultBlock';
 
 class SearchResult extends Component {
     render() {
-        const { productsList, errorMessage, saveProduct } = this.props;
+        const { productsList, errorMessage, saveProduct, loggedIn, showLoginForm } = this.props;
         return errorMessage !== null ? errorMessage : (
             <table className="table">
-                {productsList.length !== 0 && 
-                <thead>
-                    <tr>
-                        <th scope="col">Store</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Location</th>
-                        <th scope="col">Save</th>
-                    </tr>
-                </thead>}
+                {productsList.length !== 0 &&
+                    <thead>
+                        <tr>
+                            <th scope="col">Store</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Location</th>
+                            <th scope="col">Save</th>
+                        </tr>
+                    </thead>}
                 <tbody>
                     {productsList.map(singleProduct =>
-                        <SearchResultBlock key={singleProduct._id} product={singleProduct} saveProduct={saveProduct}></SearchResultBlock>
+                        <SearchResultBlock
+                            key={singleProduct._id}
+                            product={singleProduct}
+                            loggedIn={loggedIn}
+                            saveProduct={saveProduct}
+                            showLoginForm={showLoginForm}
+                        >
+                        </SearchResultBlock>
                     )
                     }
                 </tbody>
@@ -35,11 +42,12 @@ const mapStatesToProps = (state) => {
     return {
         state: state,
         productsList: getAllProductsList(state),
-        errorMessage: getErrorMessage(state)
+        errorMessage: getErrorMessage(state),
+        loggedIn: state.login.loggedIn
     }
 }
 
 
 const connectedSearchResult = withRouter(connect(mapStatesToProps, actions)(SearchResult));
 
-export {connectedSearchResult as SearchResult}
+export { connectedSearchResult as SearchResult }

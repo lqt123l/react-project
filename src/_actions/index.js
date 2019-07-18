@@ -60,12 +60,14 @@ export const deleteSave = (id) => ({
     _id:id
 })
 
-export const testSend = (value) => {
-    console.log('Value:', value)
-}
+export const showLoginForm = () => ({
+    type:'SHOW_LOGIN_FORM'
+})
+export const disableLoginForm = () => ({
+    type:'DISABLE_LOGIN_FORM'
+})
 
 export const fetchStores = () => (dispatch, getState) => {
-    // return Axios.get('https://thawing-inlet-79899.herokuapp.com/store')
     return Axios.get(`${currentServer}/store`)
         .then(
             response => {
@@ -106,8 +108,6 @@ export const fetchStores = () => (dispatch, getState) => {
 
 
 export const sendProduct = (value) => {
-    console.log(value);
-    // Axios.post('https://thawing-inlet-79899.herokuapp.com/product', {
     Axios.post(`${currentServer}/product`, {
         productName: value.productName,
         productBrand: value.productBrand,
