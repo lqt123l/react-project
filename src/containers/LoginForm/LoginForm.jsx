@@ -25,16 +25,39 @@ const LightBox = styled.div`
 `
 
 const Content = styled.div`
-    width:500px;
-    height:500px;
+    width:400px;
+    height:300px;
     border:solid 1px #f7dd8c;
     background-color:#FFF;
     position:absolute;
     z-index:105;
     top:50%;
     left: 50%;
-    margin-top:-250px;
-    margin-left:-250px;
+    margin-top:-150px;
+    margin-left:-200px;
+    @media (max-width: 520px) {
+        width:350px;
+        height:300px;
+        margin-top:-100px;
+        margin-left:-175px;
+  }
+`
+const BoxHeader = styled.div`
+    background-color:#c0d2f0;
+    height:30px;
+`
+const LoginHeader = styled.h4`
+    margin-left:25px;
+`
+const CloseButton = styled.button`
+    position:absolute;
+    right:5px;
+`
+const StyledLoginForm = styled.form`
+    margin:10px 30px;
+`
+const RegisterButton = styled.button`
+    margin-left:20px;
 `
 
 class LoginForm extends Component {
@@ -52,13 +75,25 @@ class LoginForm extends Component {
     // }
     render() {
         const { disableLoginForm, showLoginFormState } = this.props;
-        console.log('Props:',this.props)
+        console.log('Props:', this.props)
         return (
             <Wrap showLoginFormState={showLoginFormState}>
                 <LightBox></LightBox>
                 <Content>
-                    <p><button onClick={()=>disableLoginForm()}>x</button></p>
-                    这里是弹窗内容
+                    <BoxHeader><CloseButton className="close" onClick={() => disableLoginForm()}>x</CloseButton></BoxHeader>
+                    <LoginHeader>Login</LoginHeader>
+                    <StyledLoginForm>
+                        <div className="form-group">
+                            <label>Username</label>
+                            <input className="form-control" id="loginUsername" placeholder="Enter username"></input>
+                        </div>
+                        <div className="form-group">
+                            <label>Password</label>
+                            <input type="password" className="form-control" id="loginPassword1" placeholder="Password"></input>
+                        </div>
+                        <button type="submit" className="btn btn-primary">Login</button>
+                        <RegisterButton type="submit" className="btn btn-outline-primary">Register</RegisterButton>
+                    </StyledLoginForm>
                 </Content>
             </Wrap>
         );
