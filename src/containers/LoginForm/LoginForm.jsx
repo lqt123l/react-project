@@ -11,7 +11,7 @@ const Wrap = styled.div`
     left: 0px;
     top: 0px;
     z-index:100; 
-    display:${props => props.showLoginFormState === true ? console.log('ABBBBCCCCC') : 'none'};
+    display:${props => props.showLoginFormState === true ? 'static' : 'none'};
 `
 
 const LightBox = styled.div`
@@ -56,7 +56,7 @@ const CloseButton = styled.button`
 const StyledLoginForm = styled.form`
     margin:10px 30px;
 `
-const RegisterButton = styled.button`
+const RegisterButton = styled.span`
     margin-left:20px;
 `
 
@@ -74,7 +74,7 @@ class LoginForm extends Component {
     //     // this.handleSubmit = this.handleSubmit.bind(this);
     // }
     render() {
-        const { disableLoginForm, showLoginFormState } = this.props;
+        const { disableLoginForm, showLoginFormState, showRegisterForm } = this.props;
         console.log('Props:', this.props)
         return (
             <Wrap showLoginFormState={showLoginFormState}>
@@ -92,7 +92,7 @@ class LoginForm extends Component {
                             <input type="password" className="form-control" id="loginPassword1" placeholder="Password"></input>
                         </div>
                         <button type="submit" className="btn btn-primary">Login</button>
-                        <RegisterButton type="submit" className="btn btn-outline-primary">Register</RegisterButton>
+                        <RegisterButton className="btn btn-outline-primary" onClick={()=>{showRegisterForm()}}>Register</RegisterButton>
                     </StyledLoginForm>
                 </Content>
             </Wrap>
@@ -102,7 +102,7 @@ class LoginForm extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        showLoginFormState: state.loginForm.showLoginForm
+        showLoginFormState: state.login.loginForm.showLoginForm
     }
 }
 

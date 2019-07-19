@@ -43,7 +43,7 @@ const mapStatesToProps = (state) => {
         state: state,
         productsList: getAllProductsList(state),
         errorMessage: getErrorMessage(state),
-        loggedIn: state.login.loggedIn
+        loggedIn: state.login.loginStatus.loggedIn
     }
 }
 

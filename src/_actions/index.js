@@ -1,12 +1,13 @@
 import Axios from 'axios';
-import {normalize} from 'normalizr';
+import { normalize } from 'normalizr';
 import * as schema from './schema';
 
 
 
 const localHost5001 = 'http://localhost:5001';
 const heroKuServer = 'https://thawing-inlet-79899.herokuapp.com';
-const currentServer = heroKuServer;
+const currentServer = localHost5001;
+
 
 export const fetchProducts = (filter) => (dispatch, getState) => {
 
@@ -20,7 +21,7 @@ export const fetchProducts = (filter) => (dispatch, getState) => {
         item: getState().searchProducts
     })
 
-    const searchProducts = getState().searchProducts.split(" ").join("-").toLowerCase();;
+    const searchProducts = getState().searchProducts.split(" ").join("-").toLowerCase();
 
     return Axios.get(`${currentServer}/product/${searchProducts}`)
         .then(
@@ -28,7 +29,7 @@ export const fetchProducts = (filter) => (dispatch, getState) => {
                 dispatch({
                     type: 'RECEIVE_PRODUCTS',
                     filter,
-                    payload:response.data
+                    payload: response.data
                 })
             },
             error => {
@@ -57,14 +58,21 @@ export const saveProduct = (product) => ({
 
 export const deleteSave = (id) => ({
     type: 'DELETE_SAVE',
-    _id:id
+    _id: id
 })
 
 export const showLoginForm = () => ({
-    type:'SHOW_LOGIN_FORM'
+    type: 'SHOW_LOGIN_FORM'
 })
 export const disableLoginForm = () => ({
-    type:'DISABLE_LOGIN_FORM'
+    type: 'DISABLE_LOGIN_FORM'
+})
+
+export const showRegisterForm = () => ({
+    type: 'SHOW_REGISTER_FORM'
+})
+export const disableRegisterForm = () => ({
+    type: 'DISABLE_REGISTER_FORM'
 })
 
 export const fetchStores = () => (dispatch, getState) => {
@@ -117,4 +125,46 @@ export const sendProduct = (value) => {
         weight: value.weight
     })
 }
+
+export const getUserInformation = () => (dispatch) => {
+    console.log('Run!');
+    const token = localStorage.getItem('user');
+    // return Axios.get(`${currentServer}/user`,{'x-auth-token':token})
+    return Axios({
+        method: "get",
+        url: `${currentServer}/user`,
+        headers: {
+            "x-auth-token": token
+        }
+    })
+        .then(
+            (res) => {
+                dispatch({
+                    type: 'GET_USER_INFORMATION',
+                    payload: res.data
+                });
+            })
+}
+
+export const register = (user) => (dispatch) => {
+    return Axios.post(`${currentServer}/user`, {
+        username: user.username,
+        password: user.password,
+        email: user.email,
+        phone: user.phone
+    })
+        .then(
+            (res) => {
+                localStorage.setItem('user', res.headers['x-auth-token']);
+                dispatch({
+                    type: 'REGISTER_SUCCESS'
+                });
+                dispatch(disableRegisterForm());
+                dispatch({
+                    type: 'LOGIN_SUCCESS'
+                })
+                dispatch(disableLoginForm());
+            })
+}
+
 

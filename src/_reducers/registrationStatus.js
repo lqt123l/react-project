@@ -1,4 +1,4 @@
-export function registration(state = {}, action) {
+export function registrationStatus(state = {}, action) {
     switch (action.type) {
       case 'REGISTER_REQUEST':
         return { registering: true };

@@ -1,7 +1,7 @@
-let user = JSON.parse(localStorage.getItem('user'));
+let user = localStorage.getItem('user');
 const initialState = user ? { loggedIn: true, user } : { loggedIn: false };
 
-export function login(state = initialState, action) {
+export function loginStatus(state = initialState, action) {
     switch (action.type) {
         case 'LOGIN_REQUEST':
             return {
@@ -21,3 +21,5 @@ export function login(state = initialState, action) {
             return state
     }
 }
+
+

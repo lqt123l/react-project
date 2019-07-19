@@ -6,13 +6,20 @@ import { SearchProducts } from '../containers/SearchProducts';
 import { SearchResult } from '../containers/SearchResult';
 import { SavedProducts } from '../containers/SavedProducts';
 import { LoginForm } from '../containers/LoginForm';
+import {RegisterForm} from '../containers/RegisterForm';
 
 class Home extends Component {
+
+    componentDidMount(){
+        const {getUserInformation} = this.props;
+        getUserInformation();
+    }
     render() {
         const {loggedIn,showLoginForm} = this.props;
         return (
             <div>
                 <LoginForm></LoginForm>
+                <RegisterForm></RegisterForm>
                 <div className="row">
                     <div className='col-sm-12 col-md-12 col-lg-5'>
                         <SearchProducts></SearchProducts>
