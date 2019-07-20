@@ -6,16 +6,16 @@ import { SearchProducts } from '../containers/SearchProducts';
 import { SearchResult } from '../containers/SearchResult';
 import { SavedProducts } from '../containers/SavedProducts';
 import { LoginForm } from '../containers/LoginForm';
-import {RegisterForm} from '../containers/RegisterForm';
+import { RegisterForm } from '../containers/RegisterForm';
 
 class Home extends Component {
 
-    componentDidMount(){
-        const {getUserInformation} = this.props;
-        getUserInformation();
+    componentDidMount() {
+        const { getUserInformation } = this.props;
+        getUserInformation()
     }
     render() {
-        const {loggedIn,showLoginForm} = this.props;
+        const { loggedIn, showLoginForm } = this.props;
         return (
             <div>
                 <LoginForm></LoginForm>
@@ -36,11 +36,11 @@ class Home extends Component {
 
 const mapStatesToProps = (state) => {
     return {
-        loggedIn:state.login.loggedIn,
-        showLoginForm:state.login.showLoginForm
+        loggedIn: state.login.loggedIn,
+        showLoginForm: state.login.showLoginForm
     }
 }
 
 const connectedHome = withRouter(connect(mapStatesToProps, actions)(Home));
 
-export {connectedHome as Home};
+export { connectedHome as Home };

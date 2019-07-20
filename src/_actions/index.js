@@ -140,10 +140,16 @@ export const getUserInformation = () => (dispatch) => {
         .then(
             (res) => {
                 dispatch({
-                    type: 'GET_USER_INFORMATION',
+                    type: 'GET_USER_INFORMATION_SUCCESS',
                     payload: res.data
                 });
             })
+        .catch((error)=>{
+            dispatch({
+                type:"GET_USER_INFORMATION_FAIL",
+                payload:error
+            })
+        })
 }
 
 export const register = (user) => (dispatch) => {
@@ -167,4 +173,20 @@ export const register = (user) => (dispatch) => {
             })
 }
 
+export const login = (user) => (dispatch) => {
+    console.log('Running login!')
+    return Axios.post(`${currentServer}/auth`, {
+        username: user.username,
+        password: user.password
+    })
+        .then(
+            (res) => {
+                localStorage.setItem('user', res.data);
+                dispatch({
+                    type: 'LOGIN_SUCCESS'
+                });
+                dispatch(disableLoginForm());
+                dispatch(getUserInformation())
+            })
+}
 

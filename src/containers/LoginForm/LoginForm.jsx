@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import * as actions from '../../_actions/index';
 import styled from 'styled-components';
 
+
 const Wrap = styled.div`
     width:100%; 
     height:100%;
@@ -61,38 +62,78 @@ const RegisterButton = styled.span`
 `
 
 class LoginForm extends Component {
-    // constructor(props) {
-    //     super(props);
+    constructor(props) {
+        super(props);
 
-    //     this.state = {
-    //         username: '',
-    //         password: '',
-    //         submitted: false
-    //     };
+        this.state = {
+            user: {
+                username: '',
+                password: ''
+            },
+            submitted: false
+        };
 
-    //     // this.handleChange = this.handleChange.bind(this);
-    //     // this.handleSubmit = this.handleSubmit.bind(this);
-    // }
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleChange(event) {
+        const { name, value } = event.target;
+        const { user } = this.state;
+        this.setState({
+            user: {
+                ...user,
+                [name]: value
+            }
+        });
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+
+        this.setState({ submitted: true });
+        const { user } = this.state;
+        const { login } = this.props;
+        if (user.username && user.password) {
+            login(user);
+        }
+    }
+
     render() {
         const { disableLoginForm, showLoginFormState, showRegisterForm } = this.props;
-        console.log('Props:', this.props)
+        const { user, submitted } = this.state;
         return (
             <Wrap showLoginFormState={showLoginFormState}>
                 <LightBox></LightBox>
                 <Content>
                     <BoxHeader><CloseButton className="close" onClick={() => disableLoginForm()}>x</CloseButton></BoxHeader>
                     <LoginHeader>Login</LoginHeader>
-                    <StyledLoginForm>
+                    <StyledLoginForm onSubmit={this.handleSubmit}>
                         <div className="form-group">
                             <label>Username</label>
-                            <input className="form-control" id="loginUsername" placeholder="Enter username"></input>
+                            <input
+                                className="form-control"
+                                placeholder="Enter username"
+                                name="username"
+                                value={user.username}
+                                onChange={this.handleChange}
+                            >
+                            </input>
                         </div>
                         <div className="form-group">
                             <label>Password</label>
-                            <input type="password" className="form-control" id="loginPassword1" placeholder="Password"></input>
+                            <input
+                                type="password"
+                                className="form-control"
+                                placeholder="Password"
+                                name="password"
+                                value={user.password}
+                                onChange={this.handleChange}
+                            >
+                            </input>
                         </div>
                         <button type="submit" className="btn btn-primary">Login</button>
-                        <RegisterButton className="btn btn-outline-primary" onClick={()=>{showRegisterForm()}}>Register</RegisterButton>
+                        <RegisterButton className="btn btn-outline-primary" onClick={() => { showRegisterForm() }}>Register</RegisterButton>
                     </StyledLoginForm>
                 </Content>
             </Wrap>
