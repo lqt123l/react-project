@@ -20,7 +20,6 @@ const registration = combineReducers({registrationStatus, registerForm})
 const store = combineReducers({
     products, 
     stores,
-    savedProducts,
     searchProducts, 
     searchMemory,
     errorMessage,
