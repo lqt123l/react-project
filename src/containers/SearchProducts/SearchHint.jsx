@@ -4,8 +4,8 @@ const SearchHint = ({ id, isInputing,memoryList }) => {
         <datalist id={id}>
             {isInputing && (
                 <div>
-                    <option value="Swisses Gape Seed"></option>
-                    <option value="Bio Island DHA Kids 60 Capsules"></option>
+                    <option value="Pringles Chicken Salt Crips"></option>
+                    <option value="Beef steak"></option>
                 </div>
             )}
             {isInputing || (

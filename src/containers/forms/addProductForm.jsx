@@ -33,10 +33,22 @@ const validate = values => {
     if (!values.discountPrice) {
         errors.discountPrice = 'Required';
     } else if (priceRegex.test(values.discountPrice) === false) {
-        errors.discountPrice = 'Please input an valid last name.'
-    } else if (values.discountPrice > values.regularPrice) {
+        errors.discountPrice = 'Please input an valid discountPrice.'      
+    } 
+
+    function correct(value){
+        if(value>=0 && value<=10){
+            return value/10
+        }
+        return value
+    }
+    const newDiscount = correct(values.discountPrice);
+    const newRegular = correct(values.regularPrice);
+    
+    if (newDiscount > newRegular) {
         errors.discountPrice = 'Discount price must less or equal than reguar price'
     }
+
 
     if (!values.weight) {
         errors.weight = 'Required';

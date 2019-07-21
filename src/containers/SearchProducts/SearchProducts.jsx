@@ -9,19 +9,6 @@ import { getSearchContents, getIsInputing } from '../../_reducers/searchProducts
 import { getSearchMemory } from '../../_reducers/searchMemory';
 
 class SearchProducts extends Component {
-
-    // componentDidMount(){
-    //     const listFromStorage = JSON.parse(window.localStorage.getItem('search_list_history'));
-    //     this.props.setInitialSearchList(listFromStorage);
-    //     console.log('get_listFromStorage:',listFromStorage)
-    // }
-
-    // componentDidUpdate(prePros) {
-    //     console.log('set_listToStorage:',prePros.memoryList);
-    //     window.localStorage.setItem('search_list_history',JSON.stringify(prePros.memoryList))
-    // }
-
-
     render() {
         const { state, fetchProducts, searchContent, handleChange, isInputing, memoryList } = this.props;
 
@@ -48,11 +35,10 @@ const mapStatesToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
     return {
         fetchProducts: () => dispatch(fetchProducts()),
         handleChange: (e) => dispatch(searchInput(e.target.value)),
-        // setInitialSearchList:(listFromStorage) => dispatch(setInitialSearchList(listFromStorage))
     }
 }
 
