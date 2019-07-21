@@ -4,7 +4,6 @@ const byId = (state = {}, action) => {
     switch (action.type) {
         case 'RECEIVE_PRODUCTS':
             const nextState = { ...state };
-            console.log('PayLoad:',action.payload);
             action.payload.map(product => {
                 nextState[product._id] = product;
             });

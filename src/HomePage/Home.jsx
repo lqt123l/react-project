@@ -15,7 +15,6 @@ class Home extends Component {
         getUserInformation()
     }
     render() {
-        const { loggedIn, showLoginForm } = this.props;
         return (
             <div>
                 <LoginForm></LoginForm>
@@ -34,13 +33,6 @@ class Home extends Component {
     }
 }
 
-const mapStatesToProps = (state) => {
-    return {
-        loggedIn: state.login.loggedIn,
-        showLoginForm: state.login.showLoginForm
-    }
-}
-
-const connectedHome = withRouter(connect(mapStatesToProps, actions)(Home));
+const connectedHome = withRouter(connect(null, actions)(Home));
 
 export { connectedHome as Home };

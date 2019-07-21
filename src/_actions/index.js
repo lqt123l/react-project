@@ -1,6 +1,4 @@
 import Axios from 'axios';
-import { normalize } from 'normalizr';
-import * as schema from './schema';
 import { getToken } from './../_helpers/token';
 
 const localHost5001 = 'http://localhost:5001';
