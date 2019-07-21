@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import * as actions from '../../_actions/index';
 
 const NavTag = styled.span`
-
+    cursor:pointer;
 `
 const UserInfoBtn = styled.button`
 
