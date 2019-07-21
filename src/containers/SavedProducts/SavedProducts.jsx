@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { getAllSavedProducts } from '../../_reducers/userInformation';
 import * as actions from '../../_actions/index';
 import SavedProductBlock from './SavedProductBlock';
 

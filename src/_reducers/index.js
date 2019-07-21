@@ -4,7 +4,6 @@ import searchMemory from './searchMemory';
 import errorMessage from './errorMessage';
 import stores from './stores';
 import {products, getAllIds, getProducts} from './products';
-import { savedProducts,getAllSavedIds,getSavedProducts } from './savedProducts';
 import {reducer as formReducer} from 'redux-form';
 import { registrationStatus } from './registrationStatus';
 import { registerForm } from './registerForm';
@@ -36,10 +35,10 @@ export const getAllProductsList = (state) => {
     return ids.map(id =>  getProducts(state,id) )
 }
 
-export const getAllSavedProducts = (state) => {
-    const ids = getAllSavedIds(state);
-    return ids.map(id =>  getSavedProducts(state,id) )
-}
+// export const getAllSavedProducts = (state) => {
+//     const ids = getAllSavedIds(state);
+//     return ids.map(id =>  getSavedProducts(state,id) )
+// }
 
 
     
