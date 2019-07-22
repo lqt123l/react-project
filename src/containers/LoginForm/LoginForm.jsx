@@ -39,7 +39,6 @@ const Content = styled.div`
     @media (max-width: 520px) {
         width:350px;
         height:300px;
-        margin-top:-100px;
         margin-left:-175px;
   }
 `

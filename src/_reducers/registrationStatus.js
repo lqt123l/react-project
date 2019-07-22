@@ -4,8 +4,8 @@ export function registrationStatus(state = {}, action) {
         return { registering: true };
       case 'REGISTER_SUCCESS':
         return {};
-      case 'REGISTER_FAILURE':
-        return {};
+      case 'REGISTER_FAIL':
+        return {error:action.payload};
       default:
         return state
     }

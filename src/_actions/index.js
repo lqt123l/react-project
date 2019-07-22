@@ -158,6 +158,13 @@ export const register = (user) => (dispatch) => {
                 dispatch(disableLoginForm());
                 dispatch(getUserInformation())
             })
+            .catch(err=>{
+                console.log(err);
+                dispatch({
+                    type:'REGISTER_FAIL',
+                    payload:err.response.data
+                })
+            })
 }
 
 export const login = (user) => (dispatch) => {
