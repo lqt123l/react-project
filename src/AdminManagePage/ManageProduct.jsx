@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { getStores } from '../_reducers/stores'
 import { fetchStores } from './../_actions/index';
 import AddProductForm from './../containers/forms/addProductForm';
 
@@ -25,19 +24,12 @@ class ProductManage extends Component {
     }
 }
 
-const mapStatesToProps = (state) => {
-    return {
-        state: state,
-        stores: getStores(state)
-    }
-}
-
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchStores: () => dispatch(fetchStores())
     }
 }
 
-const connectedProductManage = withRouter(connect(mapStatesToProps, mapDispatchToProps)(ProductManage));
+const connectedProductManage = withRouter(connect(null, mapDispatchToProps)(ProductManage));
 
 export {connectedProductManage as ProductManage};

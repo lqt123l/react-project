@@ -43,6 +43,9 @@ class NavBar extends Component {
                             <li className="nav-item active">
                                 <NavLink className="dropdown-item" to='/product-manage'>Manage Product</NavLink>
                             </li>
+                            <li className="nav-item active">
+                                <NavLink className="dropdown-item" to={`/store/${username}`}>My Store</NavLink>
+                            </li>
                             {!loggedIn && <li className="nav-item active">
                                 <NavTag className="dropdown-item" onClick={() => showLoginForm()}>Login</NavTag>
                             </li>}
@@ -52,7 +55,7 @@ class NavBar extends Component {
                             </li>}
                         </ul>
                     </div>
-                    {loggedIn && <div>Welcome! <UserInfoBtn>{username}</UserInfoBtn><LogoutBtn onClick={() => logout()}>Logout</LogoutBtn></div>}
+                    {loggedIn && <div>Welcome! <UserInfoBtn>{username}</UserInfoBtn><NavLink  to='/' onClick={() => logout()}>Logout</NavLink></div>}
                 </nav>
             </div>
 

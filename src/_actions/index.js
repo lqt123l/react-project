@@ -3,7 +3,7 @@ import { getToken } from './../_helpers/token';
 
 const localHost5001 = 'http://localhost:5001';
 const heroKuServer = 'https://thawing-inlet-79899.herokuapp.com';
-const currentServer = heroKuServer;
+const currentServer = localHost5001;
 
 export const searchInput = (content) => ({
     type: 'SEARCH_INPUT',
@@ -24,10 +24,16 @@ export const showRegisterForm = () => ({
 export const disableRegisterForm = () => ({
     type: 'DISABLE_REGISTER_FORM'
 })
-export const logout = () => (dispatch)=>{
+export const showStoreRegForm = () => ({
+    type: 'SHOW_STORE_REG_FORM'
+})
+export const disableStoreRegForm = () => ({
+    type: 'DISABLE_STORE_REG_FORM'
+})
+export const logout = () => (dispatch) => {
     localStorage.removeItem('user');
     dispatch({
-        type:'LOGOUT'
+        type: 'LOGOUT'
     })
 }
 
@@ -127,13 +133,13 @@ export const getUserInformation = () => (dispatch) => {
                     payload: res.data
                 });
             })
-        .catch((error)=>{
-            if(error.response.status === 400){
+        .catch((error) => {
+            if (error.response.status !== 200) {
                 console.log('Cannot get user information, please login')
             }
             dispatch({
-                type:"GET_USER_INFORMATION_FAIL",
-                payload:error
+                type: "GET_USER_INFORMATION_FAIL",
+                payload: error
             })
         })
 }
@@ -158,13 +164,13 @@ export const register = (user) => (dispatch) => {
                 dispatch(disableLoginForm());
                 dispatch(getUserInformation())
             })
-            .catch(err=>{
-                console.log(err);
-                dispatch({
-                    type:'REGISTER_FAIL',
-                    payload:err.response.data
-                })
+        .catch(err => {
+            console.log(err);
+            dispatch({
+                type: 'REGISTER_FAIL',
+                payload: err.response.data
             })
+        })
 }
 
 export const login = (user) => (dispatch) => {
@@ -185,50 +191,117 @@ export const login = (user) => (dispatch) => {
 
 export const saveProduct = (productId) => (dispatch) => {
     dispatch({
-        type:"SAVE_PRODUCT_REQUEST"
+        type: "SAVE_PRODUCT_REQUEST"
     })
     return Axios({
         method: "put",
         url: `${currentServer}/user`,
-        data:{productId},
+        data: { productId },
         headers: {
             "x-auth-token": getToken()
         }
     })
-    .then((res) => {
-        dispatch({
-            type:"SAVE_PRODUCT_SUCCESS",
-            payload:res.data
+        .then((res) => {
+            dispatch({
+                type: "SAVE_PRODUCT_SUCCESS",
+                payload: res.data
+            })
         })
-    })
-    .catch((error)=>{
-        dispatch({
-            type:"SAVE_PRODUCT_FAIL"
+        .catch((error) => {
+            dispatch({
+                type: "SAVE_PRODUCT_FAIL"
+            })
         })
-    })
 }
 
 export const deleteSave = (productId) => (dispatch) => {
     dispatch({
-        type:"DELETE_SAVE_REQUEST"
+        type: "DELETE_SAVE_REQUEST"
     })
     return Axios({
         method: "delete",
         url: `${currentServer}/user`,
-        data:{productId},
+        data: { productId },
         headers: {
             "x-auth-token": getToken()
         }
     })
-    .then((res) => {
-        dispatch({
-            type:"DELETE_SAVE_PRODUCT_SUCCESS",
-            payload:res.data
+        .then((res) => {
+            dispatch({
+                type: "DELETE_SAVE_PRODUCT_SUCCESS",
+                payload: res.data
+            })
         })
-    })
-    .catch((error)=>{
-        dispatch({
-            type:"DELETE_SAVE_PRODUCT_FAIL"
+        .catch((error) => {
+            dispatch({
+                type: "DELETE_SAVE_PRODUCT_FAIL"
+            })
         })
+}
+
+export const registerStore = (store) => (dispatch) => {
+    console.log('Store:', store);
+    return Axios({
+        method: "post",
+        url: `${currentServer}/store`,
+        data: {
+            storeName: store.storeName,
+            address: store.address,
+            city: store.city,
+            state: store.state,
+            postcode: store.postcode,
+            phone: store.phone,
+            wechat: store.wechat,
+            tradeState: store.tradeState
+        },
+        headers: {
+            "x-auth-token": getToken()
+        }
     })
+        .then(
+            (res) => {
+                console.log(res.data);
+                dispatch(disableStoreRegForm());
+                dispatch({
+                    type: "GET_USER_INFORMATION_SUCCESS",
+                    payload: res.data
+                })
+            })
+        .catch(err => {
+            console.log(err);
+            dispatch({
+                type: 'STORE_REG_FAIL',
+                payload: err.response.data
+            })
+        })
+}
+
+export const getStoreInfo = () => (dispatch) => {
+    return Axios({
+        method: "get",
+        url: `${currentServer}/user/store`,
+        headers: {
+            "x-auth-token": getToken()
+        }
+    })
+        .then(
+            (res) => {
+                if (res.data.hasOwnProperty('sellerStore')) {
+                    dispatch({
+                        type: "GET_STORE_INFO_SUCCESS",
+                        user: res.data
+                    })
+                    dispatch(disableStoreRegForm())
+                }
+                else {
+                    dispatch(showStoreRegForm())
+                }
+            })
+        .catch(err => {
+            dispatch({
+                type: 'GET_STORE_INFO_FAIL',
+                payload: err.response.data
+            })
+            dispatch(showStoreRegForm())
+        })
 }

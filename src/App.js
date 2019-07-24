@@ -1,22 +1,36 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import {ProductManage} from './AdminManagePage';
-import {Home} from './HomePage';
-import {NavBar} from './containers/NavBar';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import * as actions from './_actions/index';
+import { ProductManage } from './AdminManagePage';
+import { Home } from './HomePage';
+import { NavBar } from './containers/NavBar';
+import { MyStore } from './MyStorePage';
 
 
-const App = () => {
-  return (
-    <React.Fragment>
-      <NavBar></NavBar>
-      <main className="container">
-        <Switch>
-          <Route path='/product-manage' component={ProductManage} />
-          <Route exact path='/' component={Home} />
-        </Switch>
-      </main>
-    </React.Fragment>
-  );
+
+class App extends Component {
+  componentDidMount() {
+    const { getUserInformation } = this.props;
+    getUserInformation()
+  }
+  render() {
+    return (
+      <React.Fragment>
+        <NavBar></NavBar>
+        <main className="container">
+          <Switch>
+            <Route path='/product-manage' component={ProductManage} />
+            <Route path='/store/:username' render={props => <MyStore {...props}></MyStore>} />
+            <Route exact path='/' component={Home} />
+          </Switch>
+        </main>
+      </React.Fragment>
+    );
+  }
 }
 
-export default App;
+const connectedApp = withRouter(connect(null, actions)(App));
+
+export { connectedApp as App };

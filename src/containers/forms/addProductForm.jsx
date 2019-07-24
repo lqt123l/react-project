@@ -86,7 +86,7 @@ AddProductForm = reduxForm({
 
 AddProductForm = connect(
     state => ({
-        stores: state.stores
+        stores: state.userStore.userStoresList
     }),
     null
 )(AddProductForm)

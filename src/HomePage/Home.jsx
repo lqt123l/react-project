@@ -10,10 +10,6 @@ import { RegisterForm } from '../containers/RegisterForm';
 
 class Home extends Component {
 
-    componentDidMount() {
-        const { getUserInformation } = this.props;
-        getUserInformation()
-    }
     render() {
         return (
             <div>

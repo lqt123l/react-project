@@ -2,7 +2,7 @@ import {combineReducers} from 'redux';
 import searchProducts from './searchProducts';
 import searchMemory from './searchMemory';
 import errorMessage from './errorMessage';
-import stores from './stores';
+import userStore from './userStore';
 import {products, getAllIds, getProducts} from './products';
 import {reducer as formReducer} from 'redux-form';
 import { registrationStatus } from './registrationStatus';
@@ -18,7 +18,7 @@ const registration = combineReducers({registrationStatus, registerForm})
 
 const store = combineReducers({
     products, 
-    stores,
+    userStore,
     searchProducts, 
     searchMemory,
     errorMessage,
@@ -35,10 +35,6 @@ export const getAllProductsList = (state) => {
     return ids.map(id =>  getProducts(state,id) )
 }
 
-// export const getAllSavedProducts = (state) => {
-//     const ids = getAllSavedIds(state);
-//     return ids.map(id =>  getSavedProducts(state,id) )
-// }
 
 
     
