@@ -3,7 +3,7 @@ import { getToken } from './../_helpers/token';
 
 const localHost5001 = 'http://localhost:5001';
 const heroKuServer = 'https://thawing-inlet-79899.herokuapp.com';
-const currentServer = localHost5001;
+const currentServer = heroKuServer;
 
 export const searchInput = (content) => ({
     type: 'SEARCH_INPUT',
