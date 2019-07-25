@@ -70,7 +70,13 @@ export const fetchProducts = (filter) => (dispatch, getState) => {
 }
 
 export const fetchStores = () => (dispatch, getState) => {
-    return Axios.get(`${currentServer}/store`)
+    return Axios({
+        method: "get",
+        url: `${currentServer}/store`,
+        headers: {
+            "x-auth-token": getToken()
+        }
+    })
         .then(
             response => {
                 dispatch({
@@ -107,16 +113,44 @@ export const fetchStores = () => (dispatch, getState) => {
 //         )
 // }
 
-export const sendProduct = (value) => {
-    Axios.post(`${currentServer}/product`, {
-        productName: value.productName,
-        productBrand: value.productBrand,
-        storeId: value.productStore,
-        regularPrice: value.regularPrice,
-        discountPrice: value.discountPrice,
-        weight: value.weight
+export const adminSendProduct = (value) => {
+    return Axios({
+        method: "post",
+        url: `${currentServer}/product`,
+        data: {
+            productName: value.productName,
+            productBrand: value.productBrand,
+            storeId: value.productStore,
+            regularPrice: value.regularPrice,
+            discountPrice: value.discountPrice,
+            weight: value.weight
+        },
+        headers: {
+            "x-auth-token": getToken()
+        }
     })
 }
+export const userSendProduct = (product) => (dispatch) => {
+    console.log('Action run!');
+    return Axios({
+        method: "post",
+        url: `${currentServer}/product/userproduct`,
+        data: {
+            productName: product.productName,
+            productBrand: product.productBrand,
+            regularPrice: product.regularPrice,
+            discountPrice: product.discountPrice,
+            weight: product.weight
+        },
+        headers: {
+            "x-auth-token": getToken()
+        }
+    }).then((res)=>console.log(res))
+    .catch((error)=>console.log(error))
+}
+
+
+
 
 export const getUserInformation = () => (dispatch) => {
     return Axios({
@@ -260,7 +294,6 @@ export const registerStore = (store) => (dispatch) => {
     })
         .then(
             (res) => {
-                console.log(res.data);
                 dispatch(disableStoreRegForm());
                 dispatch({
                     type: "GET_USER_INFORMATION_SUCCESS",
@@ -286,10 +319,11 @@ export const getStoreInfo = () => (dispatch) => {
     })
         .then(
             (res) => {
+                console.log(res.data);
                 if (res.data.hasOwnProperty('sellerStore')) {
                     dispatch({
                         type: "GET_STORE_INFO_SUCCESS",
-                        user: res.data
+                        payload: res.data.sellerStore
                     })
                     dispatch(disableStoreRegForm())
                 }

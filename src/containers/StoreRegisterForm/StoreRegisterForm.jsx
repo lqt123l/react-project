@@ -110,7 +110,7 @@ class StoreRegForm extends Component {
                 <LightBox></LightBox>
                 <Content>
                     <BoxHeader><CloseButton className="close" onClick={() => disableStoreRegForm()}>x</CloseButton></BoxHeader>
-                    <RegisterHeader>Register</RegisterHeader>
+                    <RegisterHeader>Please register a Store</RegisterHeader>
                     <StyledStoreRegForm onSubmit={this.handleSubmit}>
                         <div className="form-group">
                             <label>Store name</label>

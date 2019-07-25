@@ -13,8 +13,6 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <LoginForm></LoginForm>
-                <RegisterForm></RegisterForm>
                 <div>Search 'Beef Steak' or 'Pringles Chicken Salt Crips' to try, you can also add your own product by clicking Manage Product tag</div>
                 <div className="row">
                     <div className='col-sm-12 col-md-12 col-lg-5'>

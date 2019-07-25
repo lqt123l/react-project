@@ -7,6 +7,8 @@ import { ProductManage } from './AdminManagePage';
 import { Home } from './HomePage';
 import { NavBar } from './containers/NavBar';
 import { MyStore } from './MyStorePage';
+import {LoginForm} from './containers/LoginForm';
+import {RegisterForm} from './containers/RegisterForm';
 
 
 
@@ -18,11 +20,14 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
+        <LoginForm></LoginForm>
+        <RegisterForm></RegisterForm>
         <NavBar></NavBar>
         <main className="container">
           <Switch>
             <Route path='/product-manage' component={ProductManage} />
             <Route path='/store/:username' render={props => <MyStore {...props}></MyStore>} />
+            <Route path='/store' render={props => <MyStore {...props}></MyStore>} />
             <Route exact path='/' component={Home} />
           </Switch>
         </main>

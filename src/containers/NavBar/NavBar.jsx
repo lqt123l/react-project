@@ -28,7 +28,7 @@ class NavBar extends Component {
         });
     }
     render() {
-        const { loggedIn, username, showLoginForm, showRegisterForm, logout } = this.props;
+        const { loggedIn, username, showLoginForm, showRegisterForm, logout, isAdmin } = this.props;
         const collapsed = this.state.collapsed;
         const toggleClass = collapsed ? 'collapse navbar-collapse' : 'collapse navbar-collapse show';
         return (
@@ -40,9 +40,9 @@ class NavBar extends Component {
                     </button>
                     <div className={toggleClass} id="navbarNav">
                         <ul className="navbar-nav">
-                            <li className="nav-item active">
+                            {isAdmin && <li className="nav-item active">
                                 <NavLink className="dropdown-item" to='/product-manage'>Manage Product</NavLink>
-                            </li>
+                            </li>}
                             <li className="nav-item active">
                                 <NavLink className="dropdown-item" to={`/store/${username}`}>My Store</NavLink>
                             </li>
@@ -66,7 +66,8 @@ class NavBar extends Component {
 const mapStateToProps = (state) => {
     return {
         loggedIn: state.login.loginStatus.loggedIn,
-        username: state.userInformation.username
+        username: state.userInformation.username,
+        isAdmin:state.userInformation.hasOwnProperty('isAdmin')
     }
 }
 

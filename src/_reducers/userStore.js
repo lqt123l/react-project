@@ -40,8 +40,27 @@ const storeRegStatus = (state={}, action) => {
       }
 }
 
+const initialStoreInfo={
+    name:'',
+    _id:''
+}
+
+const userStoreInfo = (state=initialStoreInfo, action) => {
+    switch (action.type) {
+        case 'GET_STORE_INFO_SUCCESS':
+          return  action.payload 
+        case 'REGISTER_FAIL':
+          return {
+              ...state,
+              error:action.payload}
+              ;
+        default:
+          return state
+      }
+}
+
 const storeReg = combineReducers({storeRegForm, storeRegStatus})
-const userStore = combineReducers({ userStoresList, storeReg })
+const userStore = combineReducers({ userStoresList, storeReg, userStoreInfo })
 export default userStore;
 export const getUserStoreList = (state) => state.userStore.userStoresList
 
